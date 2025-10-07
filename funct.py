@@ -31,23 +31,20 @@ def menu():
             rodapee = input("Insira seu rodapé: \n--> ")
         else:
             rodapee == ""
-
         mm = input("Deseja inserir metadados ao relatório?")
         if mm.lower() != "nao" or "não":
-            Autor = (os.environ.get("USERNAME"))
+            Autor = os.environ.get("USERNAME")
             metadados["Autor"] = Autor
-            Data = (datetime.datetime.today().strftime("%d/%m/%Y"))
+            Data = datetime.datetime.today().strftime("%d/%m/%Y")
             metadados["Data"] = Data
             Versão = input("Versão do relatório (ex: v1.0): ")
             metadados["Versão"] = Versão
-
         relatorio_final = GerarRelatorio.Gerar(
             *paragrafos,
             titulo=tituloo,
             rodape=rodapee,
             metadados=metadados,
         )
-
         print("\n--- Relatório Final ---\n")
         print(relatorio_final)
 
