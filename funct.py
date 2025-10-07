@@ -1,43 +1,55 @@
 from classes import *
+import os
+import datetime
 
 
 def main():
-    pass
+    menu()
 
 
 def menu():
     while True:
+        metadados = {}
         os.system("pause")
         os.system("cls")
         print("Gerador de Relatórios")
-        try:
-            ch = int(
-                input(
-                    f"\n1 - Relatório Simples (Apenas Corpo)"
-                    f"\n2 - Relatório Com Título"
-                    f"\n3 - Relatório Com Título e Rodapé"
-                    f"\n4 - Relatório Com Título, Rodapé e Metadados"
-                    f"\n0 - Sair"
-                    f"\n\n---> "
-                )
+        paragrafos = []
+        while True:
+            texto = input(
+                "Insira um parágrafo ao relatório (ou 'sair' para terminar):\n--> "
             )
-        except ValueError:
-            print("\nValor Inválido, tente novamente...")
-            continue
-        match ch:
-            case 1:
-                pass
-            case 2:
-                pass
-            case 3:
-                pass
-            case 4:
-                pass
-            case 0:
-                os.system("pause")
+            paragrafos.append(texto)
+            if texto.lower() == "sair":
                 break
-            case _:
-                print("Inválido, tente novamente")
+        tt = input("Deseja inserir um título ao relatório?\n(não) ")
+        if tt.lower() != "nao" or "não":
+            tituloo = input("Insira seu título: \n--> ")
+        else:
+            tituloo == ""
+        rr = input("Deseja inserir um rodapé ao relatório?\n(não) ")
+        if rr.lower() != "nao" or "não":
+            rodapee = input("Insira seu rodapé: \n--> ")
+        else:
+            rodapee == ""
+
+        mm = input("Deseja inserir metadados ao relatório?")
+        if mm.lower() != "nao" or "não":
+            Autor = (os.environ.get("USERNAME"))
+            metadados["Autor"] = Autor
+            Data = (datetime.datetime.today().strftime("%d/%m/%Y"))
+            metadados["Data"] = Data
+            Versão = input("Versão do relatório (ex: v1.0): ")
+            metadados["Versão"] = Versão
+
+        relatorio_final = GerarRelatorio.Gerar(
+            *paragrafos,
+            titulo=tituloo,
+            rodape=rodapee,
+            metadados=metadados,
+        )
+
+        print("\n--- Relatório Final ---\n")
+        print(relatorio_final)
 
 
 menu()

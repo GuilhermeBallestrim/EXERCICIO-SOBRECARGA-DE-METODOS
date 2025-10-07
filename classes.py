@@ -13,15 +13,18 @@ class GerarRelatorio:
             corpo = f"{corpo}\n\n{caracteristicas['rodape']}"
 
         if "metadados" in caracteristicas:
-            corpo += f"\n\nMetadados: "
+            corpo += "\n\nMetadados:"
             for chave, valor in caracteristicas["metadados"].items():
                 corpo += f"\n{chave} - {valor}"
 
         return corpo
 
 
-relatorio = GerarRelatorio()
-texto = relatorio.Gerar(
+## -----------------------------------------------------------------------------------------------
+## -----------------------------------------------------------------------------------------------
+
+
+texto = GerarRelatorio.Gerar(
     "Parágrafo 1",
     "Parágrafo 2",
     titulo="Título",
